@@ -4,7 +4,12 @@ namespace Telemetry
     {
         public TelemetryReport Analyze(List<TelemetryEvent> events)
         {
-            throw new NotImplementedException();
+            return new TelemetryReport
+            {
+                Total = events.Count,
+                Errors = events.Count(e => e.Severity == Severity.Error),
+                Critical = events.Count(e => e.Severity == Severity.Critical)
+            };
         }
     }
 }

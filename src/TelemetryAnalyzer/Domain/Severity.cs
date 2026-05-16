@@ -5,6 +5,6 @@ namespace Telemetry
         Info,
         Warning, 
         Error,
-        Crititcal,
+        Critical,
     }
 }

@@ -4,7 +4,9 @@ namespace Telemetry
     {
         public void Report(TelemetryReport report)
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"Total: {report.Total}");
+            Console.WriteLine($"Errors: {report.Errors}");
+            Console.WriteLine($"Critical: {report.Critical}");
         }
     }
 }
