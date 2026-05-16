@@ -2,6 +2,13 @@ namespace Telemetry
 {
     public class TelemetryRandomParser : ITelemetryParser
     {
+        private static string[] errorMessages =
+        [
+            "Database timeout",
+            "NullRefrenceException",
+            "GPU device lost"
+        ];
+
         private readonly int _eventCount;
 
         public TelemetryRandomParser(int eventCount)
@@ -26,23 +33,21 @@ namespace Telemetry
                 {
                     severity = (Severity)severityObject;
                 }
+
                 string message = $"This is a telemetry event with severity: {severity}";
 
-                // switch (severity)
-                // {
-                //     case Severity.Info:
-                //         message = "This is a Telemetry event with "
-                //         break;
-                //     case Severity.Warning:
-                //         break;
-                //     case Severity.Error:
-                //         break;
-                //     case Severity.Crititcal:
-                //         break;
-                //     default:
-                //         message = "This is a Telemetry event!";
-                //         break;
-                // }
+                switch (severity)
+                {
+                    case Severity.Info:
+                        break;
+                    case Severity.Warning:
+                        break;
+                    case Severity.Error:
+                        message = errorMessages[random.Next(errorMessages.Length)];
+                        break;
+                    case Severity.Critical:
+                        break;
+                }
 
                 var ev = new TelemetryEvent(dateTime, message, severity);
                 events.Add(ev);

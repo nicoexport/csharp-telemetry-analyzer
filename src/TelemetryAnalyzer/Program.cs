@@ -1,6 +1,6 @@
 ﻿using Telemetry;
 
-var parser = new TelemetryRandomParser(20);
+var parser = new TelemetryRandomParser(200);
 var analyzer = new TelemetryAnalyzer();
 var reporter = new ConsoleReporter();
 
