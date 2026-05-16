@@ -4,9 +4,9 @@ namespace Telemetry
     {
         private readonly ITelemetryParser _parser;
         private readonly ITelemetryAnalyzer _analyzer;
-        private readonly IConsoleReporter _reporter;
+        private readonly IReporter _reporter;
 
-        public TelemetryAnalysisApp(ITelemetryParser parser, ITelemetryAnalyzer analyzer, IConsoleReporter reporter)
+        public TelemetryAnalysisApp(ITelemetryParser parser, ITelemetryAnalyzer analyzer, IReporter reporter)
         {
            _parser = parser;
            _analyzer = analyzer;
@@ -18,7 +18,7 @@ namespace Telemetry
             var events = _parser.Parse();
             var report = _analyzer.Analyze(events);
 
-            _reporter.Print(report);
+            _reporter.Report(report);
         }
     }
 }
