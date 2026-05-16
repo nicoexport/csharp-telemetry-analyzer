@@ -19,7 +19,13 @@ namespace Telemetry
             for (int i = 0; i < _eventCount; i++)
             {
                 var dateTime = DateTime.Now;
-                Severity severity = (Severity)severityTypes.GetValue(random.Next(severityTypes.Length));
+                object? severityObject = severityTypes.GetValue(random.Next(severityTypes.Length));
+                Severity severity = Severity.Info;
+
+                if (severityObject != null)
+                {
+                    severity = (Severity)severityObject;
+                }
                 string message = $"This is a telemetry event with severity: {severity}";
 
                 // switch (severity)
