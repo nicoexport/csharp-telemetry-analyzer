@@ -10,19 +10,19 @@ ServiceGenerator serviceGenerator = new();
 MachineIdGenerator machineGenerator = new();
 MessageGenerator messageGenerator = new();
 
+List<TelemetryEvent> events = new(); 
 
-using (var streamWriter = new StreamWriter("telemetry.log"))
+for (int i = 0; i < EVENT_COUNT; i++)
 {
-    LogFileWriter logFileWriter = new();
+    TelemetryEvent e = new();
+    e.Timestamp = timestampGenerator.Next();
+    e.Severity = severityGenerator.Generate();
+    e.Service = serviceGenerator.Generate();
+    e.MachineId = machineGenerator.Generate(e.Service);
+    e.Message = messageGenerator.Generate(e.Service, e.Severity);
 
-    for (int i = 0; i < EVENT_COUNT; i++)
-    {
-        TelemetryEvent e = new();
-        e.Timestamp = timestampGenerator.Next();
-        e.Severity = severityGenerator.Generate();
-        e.Service = serviceGenerator.Generate();
-        e.MachineId = machineGenerator.Generate(e.Service);
-        e.Message = messageGenerator.Generate(e.Service, e.Severity);
-        logFileWriter.WriteLine(streamWriter, e);
-    }
+    events.Add(e);
 }
+
+LogFileWriter logFileWriter = new();
+logFileWriter.Write("telemetry.log", events);

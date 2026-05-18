@@ -2,8 +2,13 @@ using Telemetry.Shared;
 
 public class LogFileWriter
 {
-    public void WriteLine(StreamWriter writer, TelemetryEvent ev)
+    public void Write(string path, IEnumerable<TelemetryEvent> events)
     {
-        writer.WriteLine($"{ev.Timestamp:o}|{ev.Severity}|{ev.Service}|{ev.MachineId}|{ev.Message}");        
-    } 
+        using var writer = new StreamWriter(path);
+
+        foreach (var e in events)
+        {
+            writer.WriteLine($"{e.Timestamp:o}|{e.Severity}|{e.Service}|{e.MachineId}|{e.Message}");
+        }
+    }
 }
