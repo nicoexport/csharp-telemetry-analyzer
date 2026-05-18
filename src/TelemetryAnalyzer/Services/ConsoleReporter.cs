@@ -8,20 +8,15 @@ namespace Telemetry.Analyzer
             Console.WriteLine("--- Telemetry Report ---");
             Console.WriteLine();
 
-            Console.WriteLine($"Info:       \t {report.InfoCount}    \t ({report.InfoCount * 100.0f / report.Total}%)");
-            Console.WriteLine($"Warning:    \t {report.WarningCount} \t ({report.WarningCount * 100.0f / report.Total}%)");
-            Console.WriteLine($"Error:      \t {report.ErrorCount}   \t ({report.ErrorCount * 100.0f / report.Total}%)");
-            Console.WriteLine($"Critical:   \t {report.CriticalCount} \t ({report.CriticalCount * 100.0f / report.Total}%)");
+            Console.WriteLine($"{report.InfoCount} \t ({report.InfoCount * 100.0f / report.Total}%) \t INFO");
+            Console.WriteLine($"{report.WarningCount} \t ({report.WarningCount * 100.0f / report.Total}%) \t WARNING");
+            Console.WriteLine($"{report.ErrorCount}   \t ({report.ErrorCount * 100.0f / report.Total}%) \t ERROR");
+            Console.WriteLine($"{report.CriticalCount} \t ({report.CriticalCount * 100.0f / report.Total}%) \t CRITICAL");
             Console.WriteLine();
             Console.WriteLine($"Total:      \t {report.Total}");
             Console.WriteLine();
 
-
-            // Top Errors:
-            // 1. Database timeout (42)
-            // 2. NullReferenceException (18)
-            // 3. GPU device lost (7)
-
+            // --- top errors ---
             Console.WriteLine($"Top Errors:");
             for (int i = 0; i < report.topErrors.Count(); i++)
             {
