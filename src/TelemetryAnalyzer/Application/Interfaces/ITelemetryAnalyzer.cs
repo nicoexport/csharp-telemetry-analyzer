@@ -1,8 +1,9 @@
 using Telemetry.Shared;
 
-namespace Telemetry;
-
-public interface ITelemetryAnalyzer
+namespace Telemetry.Analyzer
 {
-    public TelemetryReport Analyze(List<TelemetryEvent> events);
+    public interface ITelemetryAnalyzer
+    {
+        public TelemetryReport Analyze(List<TelemetryEvent> events);
+    }
 }

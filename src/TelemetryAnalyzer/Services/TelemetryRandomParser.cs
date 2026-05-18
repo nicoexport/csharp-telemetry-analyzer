@@ -1,60 +1,63 @@
 using Telemetry.Shared;
 
-namespace Telemetry;
-
-public class TelemetryRandomParser : ITelemetryParser
+namespace Telemetry.Analyzer
 {
-    private static string[] errorMessages =
-    [
-        "Database timeout",
-        "NullRefrenceException",
-        "GPU device lost"
-    ];
 
-    private readonly int _eventCount;
 
-    public TelemetryRandomParser(int eventCount)
+    public class TelemetryRandomParser : ITelemetryParser
     {
-        _eventCount = eventCount;
-    }
+        private static string[] errorMessages =
+        [
+            "Database timeout",
+            "NullRefrenceException",
+            "GPU device lost"
+        ];
 
-    public List<TelemetryEvent> Parse()
-    {
-        List<TelemetryEvent> events = new();
+        private readonly int _eventCount;
 
-        Array severityTypes = Enum.GetValues(typeof(Severity));
-        Random random = new Random();
-
-        for (int i = 0; i < _eventCount; i++)
+        public TelemetryRandomParser(int eventCount)
         {
-            var dateTime = DateTime.Now;
-            object? severityObject = severityTypes.GetValue(random.Next(severityTypes.Length));
-            Severity severity = Severity.Info;
-
-            if (severityObject != null)
-            {
-                severity = (Severity)severityObject;
-            }
-
-            string message = $"This is a telemetry event with severity: {severity}";
-
-            switch (severity)
-            {
-                case Severity.Info:
-                    break;
-                case Severity.Warning:
-                    break;
-                case Severity.Error:
-                    message = errorMessages[random.Next(errorMessages.Length)];
-                    break;
-                case Severity.Critical:
-                    break;
-            }
-
-            var ev = new TelemetryEvent(dateTime, message, severity);
-            events.Add(ev);
+            _eventCount = eventCount;
         }
 
-        return events;
+        public List<TelemetryEvent> Parse()
+        {
+            List<TelemetryEvent> events = new();
+
+            Array severityTypes = Enum.GetValues(typeof(Severity));
+            Random random = new Random();
+
+            for (int i = 0; i < _eventCount; i++)
+            {
+                var dateTime = DateTime.Now;
+                object? severityObject = severityTypes.GetValue(random.Next(severityTypes.Length));
+                Severity severity = Severity.Info;
+
+                if (severityObject != null)
+                {
+                    severity = (Severity)severityObject;
+                }
+
+                string message = $"This is a telemetry event with severity: {severity}";
+
+                switch (severity)
+                {
+                    case Severity.Info:
+                        break;
+                    case Severity.Warning:
+                        break;
+                    case Severity.Error:
+                        message = errorMessages[random.Next(errorMessages.Length)];
+                        break;
+                    case Severity.Critical:
+                        break;
+                }
+
+                var ev = new TelemetryEvent(dateTime, message, severity);
+                events.Add(ev);
+            }
+
+            return events;
+        }
     }
 }

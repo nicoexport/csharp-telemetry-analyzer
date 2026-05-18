@@ -1,6 +1,7 @@
-namespace Telemetry;
-
-public interface IReporter
+namespace Telemetry.Analyzer
 {
-    public void Report(TelemetryReport report);
+    public interface IReporter
+    {
+        public void Report(TelemetryReport report);
+    }
 }

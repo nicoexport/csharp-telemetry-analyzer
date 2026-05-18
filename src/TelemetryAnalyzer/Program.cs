@@ -1,4 +1,4 @@
-﻿using Telemetry;
+﻿using Telemetry.Analyzer;
 
 var parser = new TelemetryRandomParser(200);
 var analyzer = new TelemetryAnalyzer();

@@ -1,23 +1,24 @@
-namespace Telemetry.Shared;
-
-public static class Paths
+namespace Telemetry.Shared
 {
-    public static string GetOutputDirectory()
+    public static class Paths
     {
-        string solutionRoot = Path.GetFullPath(
-            Path.Combine(AppContext.BaseDirectory, "../../../../../"));
+        public static string GetOutputDirectory()
+        {
+            string solutionRoot = Path.GetFullPath(
+                Path.Combine(AppContext.BaseDirectory, "../../../../../"));
 
-        string outputDir = Path.Combine(solutionRoot, "output");
+            string outputDir = Path.Combine(solutionRoot, "output");
 
-        Directory.CreateDirectory(outputDir);
+            Directory.CreateDirectory(outputDir);
 
-        return outputDir;
-    }
+            return outputDir;
+        }
 
-    public static string GetTelemetryLogPath()
-    {
-        return Path.Combine(
-            GetOutputDirectory(),
-            "telemetry.log");
+        public static string GetTelemetryLogPath()
+        {
+            return Path.Combine(
+                GetOutputDirectory(),
+                "telemetry.log");
+        }
     }
 }

@@ -1,22 +1,23 @@
-﻿namespace Telemetry.Shared;
-
-public class TelemetryEvent
+﻿namespace Telemetry.Shared
 {
-    public DateTime Timestamp {get; set;} = default;
-    public Severity Severity {get; set;} = default;    
-    public Service Service {get; set; } = default;
-    public string MachineId {get; set; } = "";
-    public string Message {get; set;} = "";
-
-    public TelemetryEvent(DateTime timestamp, string message, Severity severity)
+    public class TelemetryEvent
     {
-        Timestamp = timestamp;
-        Message = message;
-        Severity = severity;
-    }
+        public DateTime Timestamp {get; set;} = default;
+        public Severity Severity {get; set;} = default;    
+        public Service Service {get; set; } = default;
+        public string MachineId {get; set; } = "";
+        public string Message {get; set;} = "";
 
-    public TelemetryEvent()
-    {
+        public TelemetryEvent(DateTime timestamp, string message, Severity severity)
+        {
+            Timestamp = timestamp;
+            Message = message;
+            Severity = severity;
+        }
+
+        public TelemetryEvent()
+        {
         
+        }
     }
 }
