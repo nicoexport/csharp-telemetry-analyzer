@@ -1,4 +1,3 @@
-using System.Runtime.CompilerServices;
 using Telemetry.Shared;
 
 namespace Telemetry.Analyzer
@@ -9,7 +8,6 @@ namespace Telemetry.Analyzer
         private readonly ITelemetryParser _parser;
         private readonly ITelemetryAnalyzer _analyzer;
         private readonly IReporter _reporter;
-
 
         public TelemetryAnalysisApp(ITelemetryParser parser, ITelemetryAnalyzer analyzer, IReporter reporter)
         {
@@ -22,13 +20,7 @@ namespace Telemetry.Analyzer
         public void Run()
         {
             var lines = _reader.ReadLines(Paths.GetTelemetryLogPath());
-
-            foreach(var l in lines)
-            {
-                Console.WriteLine(l);
-            }
-
-            var events = _parser.Parse();
+            var events = _parser.Parse(lines);
             var report = _analyzer.Analyze(events);
 
             _reporter.Report(report);

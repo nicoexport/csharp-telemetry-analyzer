@@ -2,14 +2,12 @@ using Telemetry.Shared;
 
 namespace Telemetry.Analyzer
 {
-
-
     public class TelemetryRandomParser : ITelemetryParser
     {
         private static string[] errorMessages =
         [
             "Database timeout",
-            "NullRefrenceException",
+            "NullReferenceException",
             "GPU device lost"
         ];
 
@@ -20,7 +18,7 @@ namespace Telemetry.Analyzer
             _eventCount = eventCount;
         }
 
-        public List<TelemetryEvent> Parse()
+        public List<TelemetryEvent> Parse(IEnumerable<string> lines)
         {
             List<TelemetryEvent> events = new();
 

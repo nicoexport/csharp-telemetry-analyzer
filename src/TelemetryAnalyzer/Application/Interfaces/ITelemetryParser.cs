@@ -4,6 +4,6 @@ namespace Telemetry.Analyzer
 {
     public interface ITelemetryParser
     {
-        public List<TelemetryEvent> Parse();
+        public List<TelemetryEvent> Parse(IEnumerable<string> lines);
     }
 }

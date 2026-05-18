@@ -1,6 +1,6 @@
 ﻿using Telemetry.Analyzer;
 
-var parser = new TelemetryRandomParser(200);
+var parser = new TelemetryParser();
 var analyzer = new TelemetryAnalyzer();
 var reporter = new ConsoleReporter();
 
