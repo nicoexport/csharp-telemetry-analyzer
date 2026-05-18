@@ -1,5 +1,7 @@
 <Solution>
   <Folder Name="/src/">
     <Project Path="src/TelemetryAnalyzer/TelemetryAnalyzer.csproj" />
+    <Project Path="src/TelemetryGenerator/TelemetryGenerator.csproj" />
+    <Project Path="src/TelemetryShared/TelemetryShared.csproj" />
   </Folder>
 </Solution>

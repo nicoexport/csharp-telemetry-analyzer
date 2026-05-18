@@ -1,10 +1,9 @@
-namespace Telemetry
+namespace Telemetry.Shared;
+
+public enum Severity
 {
-    public enum Severity
-    {
         Info,
         Warning, 
         Error,
         Critical,
-    }
 }
