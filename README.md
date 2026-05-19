@@ -15,7 +15,7 @@ The project was built as a learning exercise focused on:
 ## Project Structure
 
 ```text
-TelemetryPipeline/
+Telemetry/
 │
 ├── src/
 │   ├── TelemetryGenerator/   # Generates telemetry log files
